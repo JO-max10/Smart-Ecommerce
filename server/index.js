@@ -49,10 +49,23 @@ app.use('/api', watchlistRoutes);
 const publicImages = path.join(__dirname, '..', 'client', 'public', 'images');
 app.use('/images', express.static(publicImages));
 
-// Start listening
-app.listen(PORT, '127.0.0.1', () => {
-  console.log('=================================================================');
-  console.log(` Smart E-Commerce Multi-Agent MERN Server running on http://127.0.0.1:${PORT}`);
-  console.log(` Health Check: http://127.0.0.1:${PORT}/api/health`);
-  console.log('=================================================================');
-});
+// Start listening with resilient port fallback
+function startServer(port, maxAttempts = 10) {
+  const server = app.listen(port, '127.0.0.1', () => {
+    console.log('=================================================================');
+    console.log(` Smart E-Commerce Multi-Agent MERN Server running on http://127.0.0.1:${port}`);
+    console.log(` Health Check: http://127.0.0.1:${port}/api/health`);
+    console.log('=================================================================');
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && maxAttempts > 0) {
+      console.log(` Port ${port} is in use, attempting port ${port + 1}...`);
+      startServer(port + 1, maxAttempts - 1);
+    } else {
+      console.error(' Server fatal error:', err);
+    }
+  });
+}
+
+startServer(PORT);
