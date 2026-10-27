@@ -1,0 +1,20 @@
+{
+  "name": "smart-ecommerce-server",
+  "version": "2.0.0",
+  "description": "Smart E-Commerce Multi-Agent Assistant Backend (Node.js, Express, MongoDB, Playwright)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node --watch index.js",
+    "seed": "node config/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.3.1",
+    "natural": "^8.0.1",
+    "playwright": "^1.43.0"
+  }
+}

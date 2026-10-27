@@ -1,0 +1,16 @@
+{
+  "name": "smart-ecommerce-mern",
+  "version": "2.0.0",
+  "description": "Smart E-Commerce Shopping Assistant (Advanced) - MERN Multi-Agent System",
+  "scripts": {
+    "server": "npm start --prefix server",
+    "server:dev": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "build": "npm run build --prefix client",
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
