@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OmniCart AI — Smart E-Commerce Multi-Agent Shopping Assistant</title>
+  <meta name="description" content="Advanced multi-agent shopping bot powered by Playwright browser automation, Vector DB semantic spec matching, and 90-day price drop tracking across Amazon, Best Buy, and Walmart.">
+  
+  <!-- Modern Typography from Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+
+  <!-- Top Sticky Site Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand-wrapper" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <div class="brand-icon-box">⚡</div>
+        <div class="brand-text">
+          <h1>OmniCart AI</h1>
+          <p>Multi-Agent Shopping Intelligence</p>
+        </div>
+      </div>
+
+      <!-- Real-Time Agent Heartbeat Status -->
+      <div class="header-status-pills">
+        <div class="status-pill">
+          <span class="status-dot"></span>
+          <span>5 Autonomous Agents Online</span>
+        </div>
+        <div class="status-pill">
+          <span>🌐 Playwright Chromium Ready</span>
+        </div>
+        <div class="status-pill">
+          <span>📐 Vector Spec DB Active</span>
+        </div>
+      </div>
+
+      <!-- Header Actions -->
+      <div class="header-actions">
+        <button class="btn-header" onclick="document.getElementById('comparisonSection').scrollIntoView({behavior: 'smooth'})">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+          <span>Price Watchlist</span>
+          <span class="badge-counter" id="watchlistCount">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    
+    <!-- Hero & Search Section -->
+    <section class="hero-section">
+      <div class="hero-tag">
+        <span>🤖 Multi-Agent E-Commerce Shopping Assistant</span>
+      </div>
+      <h1 class="hero-title">
+        Find the Best Deals & Specs with <span class="text-gradient">Autonomous AI Agents</span>
+      </h1>
+      <p class="hero-subtitle">
+        Understands nuanced criteria, crawls top retailers with Playwright headless browsers, 
+        performs semantic vector matching on hardware specs, and tracks 90-day price drops.
+      </p>
+
+      <!-- Natural Language Search Bar -->
+      <div class="search-container">
+        <div class="search-glass-card">
+          <div class="search-icon-prefix">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+          </div>
+          <input 
+            type="text" 
+            id="searchInput" 
+            class="search-input" 
+            placeholder="e.g. Find a lightweight laptop under $1000 with a great battery life for coding..." 
+            value="Find a lightweight laptop under $1000 with a great battery life for coding"
+          />
+          <button id="searchBtn" class="search-btn">
+            <span>Run Multi-Agent Search</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Preset Prompt Pills -->
+      <div class="preset-queries">
+        <button class="preset-query-btn" data-query="Find a lightweight laptop under $1000 with a great battery life for coding">
+          <span>💻</span>
+          <span>Lightweight Coding Laptop &lt; $1000 (Prompt)</span>
+        </button>
+        <button class="preset-query-btn" data-query="Best noise cancelling wireless headphones under $300 for frequent flying">
+          <span>🎧</span>
+          <span>ANC Headphones &lt; $300 for Flights</span>
+        </button>
+        <button class="preset-query-btn" data-query="4K USB-C productivity monitor with portrait mode under $500">
+          <span>🖥️</span>
+          <span>4K USB-C Coding Monitor &lt; $500</span>
+        </button>
+        <button class="preset-query-btn" data-query="Budget student ultrabook under $700 with 16GB RAM">
+          <span>⚡</span>
+          <span>Budget Ultrabook 16GB &lt; $700</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Multi-Agent Live Workflow Visualizer -->
+    <section class="agent-flow-container">
+      <div class="flow-header">
+        <div class="flow-title">
+          <h3>Real-Time Multi-Agent Pipeline</h3>
+          <span class="agent-badge">Live Coordination</span>
+        </div>
+        <button id="toggleLogsBtn" class="toggle-logs-btn">
+          <span>View Live Agent Logs</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+      </div>
+
+      <!-- 5 Autonomous Agent Nodes -->
+      <div class="agents-grid">
+        <!-- Agent 1 -->
+        <div class="agent-node idle" id="agent-node-intent">
+          <div class="agent-icon-wrapper">🧠</div>
+          <div class="agent-node-title">Intent Understanding</div>
+          <div class="agent-node-role">Semantic constraint & nuance parser</div>
+          <span class="agent-status-tag">Standby</span>
+        </div>
+
+        <!-- Agent 2 -->
+        <div class="agent-node idle" id="agent-node-scraper">
+          <div class="agent-icon-wrapper">🌐</div>
+          <div class="agent-node-title">Browser Automation</div>
+          <div class="agent-node-role">Playwright multi-store crawler</div>
+          <span class="agent-status-tag">Standby</span>
+        </div>
+
+        <!-- Agent 3 -->
+        <div class="agent-node idle" id="agent-node-vector">
+          <div class="agent-icon-wrapper">📐</div>
+          <div class="agent-node-title">Vector Spec Engine</div>
+          <div class="agent-node-role">High-dimensional cosine similarity</div>
+          <span class="agent-status-tag">Standby</span>
+        </div>
+
+        <!-- Agent 4 -->
+        <div class="agent-node idle" id="agent-node-price">
+          <div class="agent-icon-wrapper">📉</div>
+          <div class="agent-node-title">Price Drop Tracker</div>
+          <div class="agent-node-role">90-day history & ATL detector</div>
+          <span class="agent-status-tag">Standby</span>
+        </div>
+
+        <!-- Agent 5 -->
+        <div class="agent-node idle" id="agent-node-rec">
+          <div class="agent-icon-wrapper">✨</div>
+          <div class="agent-node-title">Review Synthesizer</div>
+          <div class="agent-node-role">Pros/cons & direct purchase advice</div>
+          <span class="agent-status-tag">Standby</span>
+        </div>
+      </div>
+
+      <!-- Live Terminal Console Log Drawer -->
+      <div class="agent-logs-drawer" id="agentLogsDrawer" style="display: none;">
+        <!-- Dynamically populated via SSE / WebSocket -->
+      </div>
+    </section>
+
+    <!-- Top Pick Spotlight Banner -->
+    <section class="winner-spotlight" id="winnerSpotlight" style="display: none;">
+      <!-- Populated dynamically via JS -->
+    </section>
+
+    <!-- Interactive Comparison Matrix Table -->
+    <section class="comparison-section" id="comparisonSection" style="display: none;">
+      <div class="table-section-header">
+        <div class="section-heading">
+          <h2>Product Specification & Deal Comparison</h2>
+          <p>Real-time cross-store pricing, shipping speeds, verified pros & cons, and semantic vector match scores</p>
+        </div>
+        <div class="table-controls">
+          <label style="font-size: 13px; color: var(--text-muted);">Sort By:</label>
+          <select id="sortSelect" class="table-sort-select">
+            <option value="composite">🏆 Highest Recommendation Score</option>
+            <option value="price-low">💰 Lowest Price First</option>
+            <option value="semantic">📐 Vector Spec Match %</option>
+            <option value="battery">🔋 Longest Battery Life</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="comparison-card">
+        <div class="table-responsive">
+          <table class="spec-matrix-table">
+            <thead>
+              <tr>
+                <th>Product & Brand</th>
+                <th>Prices Across Stores</th>
+                <th>Vector DB Match</th>
+                <th>Key Specifications</th>
+                <th>Synthesized Pros & Cons</th>
+                <th>Direct Purchase</th>
+              </tr>
+            </thead>
+            <tbody id="comparisonTableBody">
+              <!-- Dynamically populated via JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Price History & Drop Alert Modal -->
+  <div class="modal-overlay" id="priceModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <div>
+          <h3 id="modalProductTitle">Product Price Trend</h3>
+          <span style="font-size: 12px; color: var(--text-dim);">90-Day Cross-Retailer Price History</span>
+        </div>
+        <button class="btn-close-modal" id="closeModalBtn">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="chart-stats-row">
+          <div class="stat-box">
+            <div class="stat-label">Current Lowest</div>
+            <div class="stat-val" id="modalCurrentPrice">$0.00</div>
+          </div>
+          <div class="stat-box highlight">
+            <div class="stat-label">All-Time Low (90d)</div>
+            <div class="stat-val" id="modalLowestPrice">$0.00</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-label">90-Day Average</div>
+            <div class="stat-val" id="modalAvgPrice">$0.00</div>
+          </div>
+        </div>
+
+        <!-- SVG Chart Container -->
+        <div class="chart-container" id="chartSvgContainer">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Price Drop Alert Form -->
+        <div class="alert-form-box">
+          <h4>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span>Set Price Drop Notification</span>
+          </h4>
+          <div class="alert-inputs">
+            <input type="number" id="targetPriceInput" class="alert-input" placeholder="Target Price ($)" />
+            <input type="email" id="targetEmailInput" class="alert-input" placeholder="Notify Email Address" value="user@example.com" />
+            <button id="submitAlertBtn" class="btn-submit-alert">Track Price Drop</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification">
+    <span>Notification message</span>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <div>
+        <strong style="color: var(--text-main);">OmniCart AI</strong> — Autonomous Multi-Agent Shopping Engine
+      </div>
+      <div>
+        Tech Stack: Playwright Browser Automation • Python FastAPI • Vector Database (TF-IDF & Embeddings) • SSE
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="/js/app.js"></script>
+</body>
+</html>
