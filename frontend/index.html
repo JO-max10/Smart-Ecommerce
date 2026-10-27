@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>OmniCart AI — Smart E-Commerce Multi-Agent Shopping Assistant</title>
-  <meta name="description" content="Advanced multi-agent shopping bot powered by Playwright browser automation, Vector DB semantic spec matching, and 90-day price drop tracking across Amazon, Best Buy, and Walmart.">
+  <title>CartNova — Smart Multi-Platform Lowest Price Shopping Intelligence</title>
+  <meta name="description" content="CartNova scans Flipkart, Amazon India, Meesho, Croma, and Official Brand Stores to find you the lowest verified price with direct links and delivery tracking.">
   
   <!-- Modern Typography from Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +22,8 @@
       <div class="brand-wrapper" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         <div class="brand-icon-box">⚡</div>
         <div class="brand-text">
-          <h1>OmniCart AI</h1>
-          <p>Multi-Agent Shopping Intelligence</p>
+          <h1>CartNova</h1>
+          <p>Smart Multi-Platform Price Intelligence</p>
         </div>
       </div>
 
@@ -34,15 +34,18 @@
           <span>5 Autonomous Agents Online</span>
         </div>
         <div class="status-pill">
-          <span>🌐 Playwright Chromium Ready</span>
+          <span>🛍️ Flipkart, Amazon, Meesho, Croma & Myntra</span>
         </div>
         <div class="status-pill">
-          <span>📐 Vector Spec DB Active</span>
+          <span>🇮🇳 Prices in Indian Rupees (₹)</span>
         </div>
       </div>
 
       <!-- Header Actions -->
       <div class="header-actions">
+        <a href="http://localhost:3000" target="_blank" class="btn-header" style="text-decoration:none; background: linear-gradient(135deg, #4f46e5, #0284c7); color: white;">
+          <span>🚀 Open React MERN App</span>
+        </a>
         <button class="btn-header" onclick="document.getElementById('comparisonSection').scrollIntoView({behavior: 'smooth'})">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
           <span>Price Watchlist</span>
@@ -58,14 +61,14 @@
     <!-- Hero & Search Section -->
     <section class="hero-section">
       <div class="hero-tag">
-        <span>🤖 Multi-Agent E-Commerce Shopping Assistant</span>
+        <span>⚡ Multi-Platform Smallest Price Engine (All Categories)</span>
       </div>
       <h1 class="hero-title">
-        Find the Best Deals & Specs with <span class="text-gradient">Autonomous AI Agents</span>
+        Find the <span class="text-gradient">Smallest Price</span> Across All E-Commerce Sites
       </h1>
       <p class="hero-subtitle">
-        Understands nuanced criteria, crawls top retailers with Playwright headless browsers, 
-        performs semantic vector matching on hardware specs, and tracks 90-day price drops.
+        We scan live prices across <strong>Flipkart</strong>, <strong>Amazon India</strong>, <strong>Meesho</strong>, 
+        <strong>Croma</strong>, and <strong>Official Brand Stores</strong> for Dresses, Home Decor, Kitchen Appliances & Electronics.
       </p>
 
       <!-- Natural Language Search Bar -->
@@ -78,11 +81,11 @@
             type="text" 
             id="searchInput" 
             class="search-input" 
-            placeholder="e.g. Find a lightweight laptop under $1000 with a great battery life for coding..." 
-            value="Find a lightweight laptop under $1000 with a great battery life for coding"
+            placeholder="e.g. Find designer dresses, home decor, air fryers, or phones at smallest price..." 
+            value="Compare smallest prices across Flipkart, Amazon, Meesho, Croma and Official Stores"
           />
           <button id="searchBtn" class="search-btn">
-            <span>Run Multi-Agent Search</span>
+            <span>Find Smallest Price</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </button>
         </div>
@@ -90,21 +93,25 @@
 
       <!-- Quick Preset Prompt Pills -->
       <div class="preset-queries">
-        <button class="preset-query-btn" data-query="Find a lightweight laptop under $1000 with a great battery life for coding">
+        <button class="preset-query-btn" data-query="Find Libas embroidered Anarkali dress under ₹1,500 on Meesho and Flipkart">
+          <span>👗</span>
+          <span>Libas Anarkali Dress &lt; ₹1,500</span>
+        </button>
+        <button class="preset-query-btn" data-query="Nestasia minimalist ceramic donut vase set home decor deals">
+          <span>🏺</span>
+          <span>Ceramic Vase Trio &lt; ₹1,000</span>
+        </button>
+        <button class="preset-query-btn" data-query="Compare Philips digital air fryer smallest price across Flipkart and Amazon">
+          <span>🍳</span>
+          <span>Philips Digital Air Fryer</span>
+        </button>
+        <button class="preset-query-btn" data-query="Find the lowest price on Apple iPhone 16 Pro across Flipkart and Amazon">
+          <span>📱</span>
+          <span>iPhone 16 Pro Lowest Price</span>
+        </button>
+        <button class="preset-query-btn" data-query="Find a lightweight laptop under ₹1,00,000 with a great battery life for coding">
           <span>💻</span>
-          <span>Lightweight Coding Laptop &lt; $1000 (Prompt)</span>
-        </button>
-        <button class="preset-query-btn" data-query="Best noise cancelling wireless headphones under $300 for frequent flying">
-          <span>🎧</span>
-          <span>ANC Headphones &lt; $300 for Flights</span>
-        </button>
-        <button class="preset-query-btn" data-query="4K USB-C productivity monitor with portrait mode under $500">
-          <span>🖥️</span>
-          <span>4K USB-C Coding Monitor &lt; $500</span>
-        </button>
-        <button class="preset-query-btn" data-query="Budget student ultrabook under $700 with 16GB RAM">
-          <span>⚡</span>
-          <span>Budget Ultrabook 16GB &lt; $700</span>
+          <span>Coding Laptop &lt; ₹1,00,000</span>
         </button>
       </div>
     </section>

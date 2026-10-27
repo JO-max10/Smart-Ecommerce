@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatINR } from '../utils/currency.js';
 
 export default function WatchlistModal({ watchlist, onClose, onRemoveAlert }) {
   return (
@@ -24,7 +25,7 @@ export default function WatchlistModal({ watchlist, onClose, onRemoveAlert }) {
                 No active price alerts yet
               </p>
               <p style={{ fontSize: '13px' }}>
-                Click "Track Price Drop" on any product to get notified when the price hits your target.
+                Click "Track Price Drop" on any product to get notified when the price hits your target in Indian Rupees (₹).
               </p>
             </div>
           ) : (
@@ -48,7 +49,7 @@ export default function WatchlistModal({ watchlist, onClose, onRemoveAlert }) {
                       {item.product_name}
                     </h4>
                     <div style={{ fontSize: '12px', color: 'var(--text-secondary)' }}>
-                      Target: <strong style={{ color: '#38bdf8' }}>${item.target_price?.toFixed(2)}</strong> (Current: ${item.current_price?.toFixed(2)})
+                      Target: <strong style={{ color: '#059669' }}>{formatINR(item.target_price)}</strong> (Current: {formatINR(item.current_price)})
                     </div>
                     <div style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '2px' }}>
                       Notification to: {item.user_email || 'user@example.com'}
@@ -58,7 +59,7 @@ export default function WatchlistModal({ watchlist, onClose, onRemoveAlert }) {
                   <span
                     style={{
                       background: item.is_triggered ? 'var(--accent-emerald-soft)' : 'rgba(59, 130, 246, 0.12)',
-                      color: item.is_triggered ? '#34d399' : '#60a5fa',
+                      color: item.is_triggered ? '#059669' : '#2563eb',
                       fontSize: '11px',
                       fontWeight: 600,
                       padding: '4px 10px',

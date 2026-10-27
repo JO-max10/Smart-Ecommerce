@@ -3,9 +3,15 @@
  * Interactive Client Application & SSE Stream Visualizer
  */
 
+// Formatting Utility for Indian Rupee
+function formatINR(val) {
+  if (val === null || val === undefined || isNaN(val)) return '₹0';
+  return '₹' + Math.round(Number(val)).toLocaleString('en-IN');
+}
+
 // Application State
 const state = {
-  currentQuery: "Find a lightweight laptop under $1000 with a great battery life for coding",
+  currentQuery: "Compare smallest prices across Flipkart, Amazon, Meesho, Croma and Official Stores",
   isLoading: false,
   activeReport: null,
   watchlist: [],
@@ -273,11 +279,11 @@ function renderWinnerSpotlight(report) {
       <p class="winner-rationale">${escapeHtml(report.top_pick_rationale)}</p>
       
       <div class="winner-pricing-bar">
-        <div class="winner-best-price">$${winner.best_price.toFixed(2)}</div>
-        <div class="winner-list-price">$${winner.list_price.toFixed(2)}</div>
-        <div class="winner-savings">Save $${winner.savings.toFixed(2)} (${winner.discount_pct}% Off)</div>
+        <div class="winner-best-price">${formatINR(winner.best_price)}</div>
+        <div class="winner-list-price">${formatINR(winner.list_price)}</div>
+        <div class="winner-savings">Save ${formatINR(winner.savings)} (${winner.discount_pct}% Off)</div>
         <span style="font-size: 13px; color: var(--text-muted); margin-left: auto;">
-          Best store: <strong style="color: var(--text-main);">${escapeHtml(winner.best_store)}</strong> (${escapeHtml(winner.shipping_time)})
+          Smallest price store: <strong style="color: var(--text-main);">${escapeHtml(winner.best_store)}</strong> (${escapeHtml(winner.shipping_time)})
         </span>
       </div>
 
@@ -325,7 +331,7 @@ function renderComparisonTable(products) {
       return `
         <div class="store-offer-chip ${isBest ? 'best-offer' : ''}">
           <span class="store-name">${escapeHtml(s.store)}</span>
-          <span class="store-price ${isBest ? 'highlight' : ''}">$${s.price.toFixed(2)}</span>
+          <span class="store-price ${isBest ? 'highlight' : ''}">${formatINR(s.price)}</span>
         </div>
       `;
     }).join("");
@@ -527,7 +533,7 @@ async function handleCreatePriceAlert() {
       })
     });
     const data = await res.json();
-    showToast(`🔔 Price alert set for ${state.selectedProductForModal.brand} at $${targetPrice}!`);
+    showToast(`🔔 Price alert set for ${state.selectedProductForModal.brand} at ${formatINR(targetPrice)}!`);
     priceModal.classList.remove("active");
     fetchWatchlist();
   } catch (err) {

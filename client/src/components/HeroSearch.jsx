@@ -1,16 +1,34 @@
 import React from 'react';
 
 const CATEGORIES = [
-  { id: 'all', label: 'All Products', icon: '🌟', defaultQuery: 'Show all top tech deals across Amazon, Flipkart, Meesho, and Official Stores' },
-  { id: 'new_launches', label: '🔥 2026 New Launches', icon: '✨', defaultQuery: 'Show latest 2026 new launch flagship phones and gadgets at lowest price' },
-  { id: 'smartphones', label: 'Smartphones', icon: '📱', defaultQuery: 'Find best price on iPhone 16 Pro and Galaxy S25 Ultra across Flipkart and Meesho' },
-  { id: 'laptops', label: 'Laptops & Coding', icon: '💻', defaultQuery: 'Find a lightweight laptop under $1000 with a great battery life for coding' },
-  { id: 'smartwatches', label: 'Smartwatches', icon: '⌚', defaultQuery: 'Compare Apple Watch Series 10 prices across Flipkart, Amazon, and Apple Store' },
-  { id: 'headphones', label: 'ANC Headphones', icon: '🎧', defaultQuery: 'Best noise cancelling wireless headphones under $350 for travel and work' },
-  { id: 'monitors', label: '4K Monitors', icon: '🖥️', defaultQuery: '4K USB-C productivity monitor with portrait mode under $500' }
+  { id: 'all', label: 'All Products', icon: '🌟', defaultQuery: 'Compare smallest prices across Flipkart, Amazon, Meesho, Croma and Official Stores' },
+  { id: 'fashion', label: 'Dresses & Fashion', icon: '👗', defaultQuery: 'Find beautiful designer dress and anarkali kurta sets at smallest price on Meesho and Flipkart' },
+  { id: 'home_decor', label: 'Home Decor', icon: '🏺', defaultQuery: 'Modern ceramic vases and aesthetic home decor items with highest discounts' },
+  { id: 'home_kitchen', label: 'Home & Kitchen', icon: '🍳', defaultQuery: 'Best digital air fryer and home kitchen appliances under ₹8,000' },
+  { id: 'new_launches', label: '🔥 2026 New Launches', icon: '✨', defaultQuery: 'Show latest 2026 new launch flagship phones and gadgets at smallest price' },
+  { id: 'smartphones', label: 'Smartphones', icon: '📱', defaultQuery: 'Compare iPhone 16 Pro and Galaxy S25 Ultra across Flipkart, Amazon and Meesho' },
+  { id: 'laptops', label: 'Laptops & Coding', icon: '💻', defaultQuery: 'Find a lightweight laptop under ₹1,00,000 with a great battery life for coding' },
+  { id: 'smartwatches', label: 'Smartwatches', icon: '⌚', defaultQuery: 'Compare Apple Watch Series 10 prices across Flipkart, Amazon and Croma' },
+  { id: 'headphones', label: 'ANC Headphones', icon: '🎧', defaultQuery: 'Best noise cancelling wireless headphones under ₹30,000 for travel and work' },
+  { id: 'monitors', label: '4K Monitors', icon: '🖥️', defaultQuery: '4K USB-C productivity monitor with portrait mode under ₹50,000' }
 ];
 
 const PRESETS = [
+  {
+    icon: '👗',
+    label: 'Libas Anarkali Dress < ₹1,500',
+    query: 'Find Libas embroidered Anarkali dress under ₹1,500 on Meesho and Flipkart'
+  },
+  {
+    icon: '🏺',
+    label: 'Ceramic Vase Trio < ₹1,000',
+    query: 'Nestasia minimalist ceramic donut vase set home decor deals'
+  },
+  {
+    icon: '🍳',
+    label: 'Philips Digital Air Fryer',
+    query: 'Compare Philips digital air fryer smallest price across Flipkart and Amazon'
+  },
   {
     icon: '✨',
     label: 'iPhone 16 Pro Lowest Price',
@@ -18,23 +36,13 @@ const PRESETS = [
   },
   {
     icon: '📱',
-    label: 'Samsung S25 Ultra Deal',
+    label: 'Galaxy S25 Ultra Deal',
     query: 'Compare Samsung Galaxy S25 Ultra price on Meesho and Flipkart'
   },
   {
     icon: '💻',
-    label: 'Coding Laptop < $1000',
-    query: 'Find a lightweight laptop under $1000 with a great battery life for coding'
-  },
-  {
-    icon: '⌚',
-    label: 'Apple Watch Series 10',
-    query: 'Apple Watch Series 10 lowest verified price deal'
-  },
-  {
-    icon: '🎧',
-    label: 'Sony XM5 ANC Headphones',
-    query: 'Sony WH-1000XM5 wireless noise cancelling headphones lowest price'
+    label: 'Coding Laptop < ₹1,00,000',
+    query: 'Find a lightweight laptop under ₹1,00,000 with a great battery life for coding'
   }
 ];
 
@@ -60,14 +68,15 @@ export default function HeroSearch({
   return (
     <section className="hero-section">
       <div className="hero-tag">
-        <span>⚡ Multi-Platform Lowest Price Engine</span>
+        <span>⚡ Multi-Platform Lowest Price Engine (All E-Commerce Sites)</span>
       </div>
       <h1 className="hero-title">
-        Find the <span className="text-gradient">Smallest Price</span> Across Amazon, Flipkart & Meesho
+        Find the <span className="text-gradient">Smallest Price</span> Across All E-Commerce Sites in India
       </h1>
       <p className="hero-subtitle">
-        We track prices across Amazon, Flipkart, Meesho, and Official Brand Stores in real time.
-        We direct you straight to the verified seller giving the absolute lowest price with full official warranty.
+        We scan and compare real-time prices across <strong>Flipkart</strong>, <strong>Amazon India</strong>,{' '}
+        <strong>Meesho</strong>, <strong>Croma</strong>, <strong>Reliance Digital</strong>, and{' '}
+        <strong>Official Brand Stores</strong>. We show you the genuine smallest price with official warranty.
       </p>
 
       {/* Category Quick Selectors */}
@@ -102,7 +111,7 @@ export default function HeroSearch({
           <input
             type="text"
             className="search-input"
-            placeholder="Search any product or brand (e.g. iPhone 16 Pro, MacBook M3, Samsung S25, Sony XM5, low price on Flipkart)..."
+            placeholder="Search any product (e.g. iPhone 16 Pro, MacBook M3, Samsung S25, Sony XM5, smallest price in ₹)..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -121,7 +130,7 @@ export default function HeroSearch({
 
           <button type="submit" className={`search-btn ${isLoading ? 'loading' : ''}`} disabled={isLoading}>
             {isLoading ? (
-              <span>Searching...</span>
+              <span>Comparing Sites...</span>
             ) : (
               <>
                 <span>Compare Lowest Prices</span>
@@ -136,12 +145,12 @@ export default function HeroSearch({
 
       {/* Platform Filter Buttons */}
       <div className="store-filters-strip">
-        <span className="store-filter-label">Filter by Winning Platform:</span>
+        <span className="store-filter-label">Filter by Winning Store:</span>
         <div className="store-pill-group">
           {[
-            { id: 'all', label: '🌐 All Stores' },
+            { id: 'all', label: '🌐 All E-Commerce Sites' },
             { id: 'Flipkart', label: '🛍️ Flipkart Deals' },
-            { id: 'Amazon', label: '📦 Amazon Deals' },
+            { id: 'Amazon', label: '📦 Amazon India Deals' },
             { id: 'Meesho', label: '🏷️ Meesho Deals' },
             { id: 'Official', label: '🏢 Official Brand Stores' }
           ].map((st) => (

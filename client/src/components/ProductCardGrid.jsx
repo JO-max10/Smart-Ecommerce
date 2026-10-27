@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatINR } from '../utils/currency.js';
 
 export default function ProductCardGrid({ products, onOpenPriceModal, onAddToCart }) {
   if (!products || products.length === 0) return null;
@@ -11,7 +12,7 @@ export default function ProductCardGrid({ products, onOpenPriceModal, onAddToCar
         const bestStore = stores[0] || { store: p.best_store || 'Retailer', price: p.best_price };
         const bestPrice = bestStore.price || p.best_price;
         const listPrice = p.list_price || bestPrice;
-        const savings = Math.max(0, Math.round((listPrice - bestPrice) * 100) / 100);
+        const savings = Math.max(0, listPrice - bestPrice);
 
         return (
           <div key={p.product_id || p.id} className="product-card">
@@ -54,7 +55,7 @@ export default function ProductCardGrid({ products, onOpenPriceModal, onAddToCar
 
               {/* Multi-Platform Price Comparison Strip */}
               <div className="card-platform-comparison">
-                <span className="platform-comp-title">Live Store Prices:</span>
+                <span className="platform-comp-title">Live E-Commerce Prices:</span>
                 <div className="platform-chips-row">
                   {stores.map((s, idx) => {
                     const isLowest = idx === 0;
@@ -65,10 +66,10 @@ export default function ProductCardGrid({ products, onOpenPriceModal, onAddToCar
                         target="_blank"
                         rel="noopener noreferrer"
                         className={`platform-chip ${isLowest ? 'lowest-chip' : ''}`}
-                        title={`Buy on ${s.store} for $${Number(s.price).toFixed(2)}`}
+                        title={`Buy on ${s.store} for ${formatINR(s.price)}`}
                       >
                         <span className="store-chip-name">{s.store}:</span>
-                        <span className="store-chip-price">${Number(s.price).toFixed(2)}</span>
+                        <span className="store-chip-price">{formatINR(s.price)}</span>
                         {isLowest && <span className="lowest-dot" title="Lowest verified price">★</span>}
                       </a>
                     );
@@ -96,10 +97,10 @@ export default function ProductCardGrid({ products, onOpenPriceModal, onAddToCar
                   <div className="lowest-price-tag-label">
                     🏆 Smallest Price on <strong>{bestStore.store}</strong>
                   </div>
-                  <div className="card-best-price">${Number(bestPrice).toFixed(2)}</div>
+                  <div className="card-best-price">{formatINR(bestPrice)}</div>
                   {savings > 0 && (
                     <div className="card-savings">
-                      Save ${savings.toFixed(2)} vs list price (${listPrice.toFixed(2)})
+                      Save {formatINR(savings)} vs list price ({formatINR(listPrice)})
                     </div>
                   )}
                 </div>

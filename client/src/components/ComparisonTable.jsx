@@ -1,6 +1,13 @@
 import React from 'react';
+import { formatINR } from '../utils/currency.js';
 
-export default function ComparisonTable({ products, activeSort, setActiveSort, onOpenPriceModal }) {
+export default function ComparisonTable({
+  products,
+  activeSort,
+  setActiveSort,
+  onOpenPriceModal,
+  onAddToCart
+}) {
   if (!products || products.length === 0) return null;
 
   // Sort products
@@ -19,8 +26,8 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
     <section className="comparison-section" id="comparisonSection">
       <div className="table-section-header">
         <div className="section-heading">
-          <h2>Product Specification & Deal Comparison</h2>
-          <p>Real-time cross-store pricing, shipping speeds, verified pros & cons, and semantic vector match scores</p>
+          <h2>All E-Commerce Specification & Price Comparison</h2>
+          <p>Real-time cross-store pricing across Flipkart, Amazon, Meesho, Croma & Official Stores in Indian Rupees (₹)</p>
         </div>
         <div className="table-controls">
           <label style={{ fontSize: '13px', color: 'var(--text-muted)' }}>Sort By:</label>
@@ -30,7 +37,7 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
             onChange={(e) => setActiveSort(e.target.value)}
           >
             <option value="composite">🏆 Highest Recommendation Score</option>
-            <option value="price-low">💰 Lowest Price First</option>
+            <option value="price-low">💰 Lowest Price First (₹)</option>
             <option value="semantic">📐 Vector Spec Match %</option>
             <option value="battery">🔋 Longest Battery Life</option>
           </select>
@@ -43,20 +50,22 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
             <thead>
               <tr>
                 <th>Product & Brand</th>
-                <th>Prices Across Stores</th>
+                <th>Prices Across Competing E-Commerce Sites</th>
                 <th>Vector DB Match</th>
                 <th>Key Specifications</th>
                 <th>Synthesized Pros & Cons</th>
-                <th>Direct Purchase</th>
+                <th>Direct Purchase & Cart</th>
               </tr>
             </thead>
             <tbody>
               {sorted.map((p, idx) => {
                 const isWinner = idx === 0 && activeSort === 'composite';
                 const specs = p.key_specs || {};
+                const stores = p.stores || [];
+                const bestStore = stores[0] || { store: p.best_store || 'Retailer', price: p.best_price };
 
                 return (
-                  <tr key={p.product_id} className={isWinner ? 'row-winner' : ''}>
+                  <tr key={p.product_id || p.id} className={isWinner ? 'row-winner' : ''}>
                     {/* Product & Brand */}
                     <td>
                       <div className="product-cell">
@@ -67,6 +76,9 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
                           <span className="product-brand">{p.brand}</span>
                           <span className="product-title">{p.name}</span>
                           <div className="product-rank-badge">
+                            {p.is_new_launch && (
+                              <span className="badge-pill-new">✨ 2026 NEW</span>
+                            )}
                             <span>{p.badge ? p.badge : `#${p.rank} Rank`}</span>
                           </div>
                         </div>
@@ -76,19 +88,27 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
                     {/* Multi-Store Real-Time Prices */}
                     <td>
                       <div className="store-offers-box">
-                        {(p.stores || []).map((s, sIdx) => {
-                          const isBest = s.price === p.best_price;
+                        {stores.map((s, sIdx) => {
+                          const isLowest = sIdx === 0;
                           return (
-                            <div key={sIdx} className={`store-offer-chip ${isBest ? 'best-offer' : ''}`}>
-                              <span className="store-name">{s.store}</span>
-                              <span className={`store-price ${isBest ? 'highlight' : ''}`}>
-                                ${s.price?.toFixed(2)}
+                            <a
+                              key={sIdx}
+                              href={s.url || '#'}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className={`store-offer-chip ${isLowest ? 'best-offer' : ''}`}
+                              title={`Buy on ${s.store} for ${formatINR(s.price)}`}
+                            >
+                              <span className="store-name">{s.store}:</span>
+                              <span className={`store-price ${isLowest ? 'highlight' : ''}`}>
+                                {formatINR(s.price)}
                               </span>
-                            </div>
+                              {isLowest && <span className="lowest-tag">Lowest</span>}
+                            </a>
                           );
                         })}
-                        <div style={{ fontSize: '11px', color: 'var(--text-dim)', marginTop: '2px' }}>
-                          🚀 {p.shipping_time}
+                        <div className="table-delivery-agent">
+                          🚚 {p.delivery_agent || `${bestStore.store} Express Logistics`}
                         </div>
                       </div>
                     </td>
@@ -117,6 +137,16 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
                     {/* Key Technical Specs */}
                     <td>
                       <div className="specs-list">
+                        {specs.processor && (
+                          <div className="spec-item">
+                            <span className="spec-icon">⚡</span> {specs.processor.split('(')[0]}
+                          </div>
+                        )}
+                        {specs.display && (
+                          <div className="spec-item">
+                            <span className="spec-icon">🖥️</span> {specs.display.split('(')[0]}
+                          </div>
+                        )}
                         {specs.battery_hours && (
                           <div className="spec-item">
                             <span className="spec-icon">🔋</span>
@@ -126,22 +156,12 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
                         {specs.weight_lbs && (
                           <div className="spec-item">
                             <span className="spec-icon">🪶</span>
-                            <strong>{specs.weight_lbs} lbs</strong> ({specs.weight_kg || '1.2'} kg)
+                            <strong>{specs.weight_lbs} lbs</strong>
                           </div>
                         )}
                         {specs.ram && (
                           <div className="spec-item">
                             <span className="spec-icon">💾</span> {specs.ram}
-                          </div>
-                        )}
-                        {specs.processor && (
-                          <div className="spec-item">
-                            <span className="spec-icon">⚡</span> {specs.processor.split('(')[0]}
-                          </div>
-                        )}
-                        {specs.display && (
-                          <div className="spec-item">
-                            <span className="spec-icon">🖥️</span> {specs.display.split('(')[0]}
                           </div>
                         )}
                       </div>
@@ -167,27 +187,38 @@ export default function ComparisonTable({ products, activeSort, setActiveSort, o
 
                     {/* Actions */}
                     <td className="action-cell">
-                      <a
-                        href={p.direct_buy_url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-table-buy"
-                      >
-                        <span>Buy ${p.best_price?.toFixed(2)}</span>
-                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                          <path d="M5 12h14M12 5l7 7-7 7" />
-                        </svg>
-                      </a>
-                      <button
-                        className="btn-table-history"
-                        onClick={() => onOpenPriceModal(p)}
-                      >
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                          <path d="M3 3v18h18" />
-                          <path d="m19 9-5 5-4-4-3 3" />
-                        </svg>
-                        <span>Price Trend & Alert</span>
-                      </button>
+                      <div className="table-action-stack">
+                        <a
+                          href={bestStore.url || p.direct_buy_url || '#'}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn-table-buy"
+                        >
+                          <span>Buy on {bestStore.store} ({formatINR(bestStore.price || p.best_price)})</span>
+                        </a>
+
+                        {onAddToCart && (
+                          <button
+                            type="button"
+                            className="btn-table-add-cart"
+                            onClick={() => onAddToCart(p, bestStore)}
+                          >
+                            <span>🛒 Add to Cart</span>
+                          </button>
+                        )}
+
+                        <button
+                          type="button"
+                          className="btn-table-history"
+                          onClick={() => onOpenPriceModal(p)}
+                        >
+                          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M3 3v18h18" />
+                            <path d="m19 9-5 5-4-4-3 3" />
+                          </svg>
+                          <span>Price Trend</span>
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 );

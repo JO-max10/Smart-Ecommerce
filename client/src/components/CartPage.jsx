@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatINR } from '../utils/currency.js';
 
 export default function CartPage({
   cart = [],
@@ -12,8 +13,8 @@ export default function CartPage({
 }) {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
-  // Calculate platform-by-platform total cost for the entire cart
-  const platforms = ['Flipkart', 'Amazon', 'Meesho', 'Official Store'];
+  // Compare across all competing e-commerce platforms
+  const platforms = ['Flipkart', 'Amazon', 'Meesho', 'Croma', 'Official Store'];
 
   const platformTotals = platforms.map((platformName) => {
     let total = 0;
@@ -36,7 +37,7 @@ export default function CartPage({
 
     return {
       platform: platformName,
-      total: Math.round(total * 100) / 100,
+      total: Math.round(total),
       availableCount,
       isFullyAvailable: availableCount === cart.length
     };
@@ -48,7 +49,7 @@ export default function CartPage({
   const highestPlatform = platformTotals[platformTotals.length - 1];
   const maxSavings =
     highestPlatform && lowestPlatform
-      ? Math.max(0, Math.round((highestPlatform.total - lowestPlatform.total) * 100) / 100)
+      ? Math.max(0, highestPlatform.total - lowestPlatform.total)
       : 0;
 
   // Selected cart total based on user's current store picks
@@ -60,24 +61,23 @@ export default function CartPage({
     (acc, item) => acc + (item.list_price || item.unit_price) * item.quantity,
     0
   );
-  const selectedSavings = Math.max(
-    0,
-    Math.round((selectedListTotal - selectedCartTotal) * 100) / 100
-  );
+  const selectedSavings = Math.max(0, selectedListTotal - selectedCartTotal);
 
   // Recommendations for items not yet in cart
   const cartProductIds = new Set(cart.map((c) => c.product_id));
-  const suggestedItems = allProducts.filter((p) => !cartProductIds.has(p.product_id || p.id)).slice(0, 4);
+  const suggestedItems = allProducts
+    .filter((p) => !cartProductIds.has(p.product_id || p.id))
+    .slice(0, 4);
 
   if (cart.length === 0) {
     return (
       <div className="cart-page-empty-container">
         <div className="cart-empty-card">
-          <div className="cart-empty-icon">🛒</div>
+          <div className="cart-empty-icon">🛍️</div>
           <h2>Your CartNova Deal Bag is Empty</h2>
           <p>
-            You haven't added any products yet. Search across Amazon, Flipkart, Meesho, and
-            Official Brand Stores to find the smallest price guaranteed!
+            You haven't added any products yet. Search across Flipkart, Amazon, Meesho, Croma,
+            and Official Brand Stores to find the smallest verified price in Indian Rupees (₹)!
           </p>
           <div className="cart-empty-actions">
             <button
@@ -85,7 +85,7 @@ export default function CartPage({
               className="btn-primary-action"
               onClick={onContinueShopping}
             >
-              🔍 Browse Lowest Price Deals
+              🔍 Browse Smallest Price Deals
             </button>
           </div>
         </div>
@@ -94,8 +94,8 @@ export default function CartPage({
         {suggestedItems.length > 0 && (
           <div className="cart-suggestions-section">
             <div className="cart-suggestions-header">
-              <h3>🔥 Trending Products at Smallest Price</h3>
-              <p>Top price-dropped items across major verified platforms</p>
+              <h3>🔥 Trending Products at Smallest Price (₹)</h3>
+              <p>Checked across all major verified e-commerce sites</p>
             </div>
             <div className="cart-suggestions-grid">
               {suggestedItems.map((prod) => {
@@ -108,7 +108,7 @@ export default function CartPage({
                       <span className="cart-suggest-brand">{prod.brand}</span>
                       <h4>{prod.name}</h4>
                       <div className="cart-suggest-price-row">
-                        <span className="suggest-best-price">${price.toFixed(2)}</span>
+                        <span className="suggest-best-price">{formatINR(price)}</span>
                         <span className="suggest-store-pill">
                           🏆 {bestStore.store || 'Flipkart'} Lowest
                         </span>
@@ -142,8 +142,8 @@ export default function CartPage({
           </h3>
           <p>
             Buying these items on {lowestPlatform.platform} totals{' '}
-            <strong className="text-emerald">${lowestPlatform.total.toFixed(2)}</strong>. You save{' '}
-            <strong>${maxSavings.toFixed(2)}</strong> compared to the highest platform!
+            <strong className="text-emerald">{formatINR(lowestPlatform.total)}</strong>. You save{' '}
+            <strong>{formatINR(maxSavings)}</strong> compared to the highest priced site!
           </p>
         </div>
         <div className="banner-action">
@@ -153,7 +153,7 @@ export default function CartPage({
             rel="noopener noreferrer"
             className="btn-buy-lowest-cart"
           >
-            ⚡ Buy on {lowestPlatform.platform}
+            ⚡ Buy on {lowestPlatform.platform} ({formatINR(lowestPlatform.total)})
           </a>
         </div>
       </div>
@@ -164,7 +164,7 @@ export default function CartPage({
           <div className="cart-header-row">
             <div>
               <h2>Your Shopping Cart ({totalItems} {totalItems === 1 ? 'item' : 'items'})</h2>
-              <p>Compare which platform sells each item for the lowest price</p>
+              <p>Compare which e-commerce platform sells each product for the lowest price</p>
             </div>
             <button
               type="button"
@@ -207,7 +207,7 @@ export default function CartPage({
                     {/* Store Selector Pill & Direct Link */}
                     <div className="cart-platform-selector-row">
                       <div className="platform-select-box">
-                        <label htmlFor={`store-select-${item.product_id}`}>Selected Platform:</label>
+                        <label htmlFor={`store-select-${item.product_id}`}>Selected Store:</label>
                         <select
                           id={`store-select-${item.product_id}`}
                           value={item.selected_store}
@@ -216,7 +216,7 @@ export default function CartPage({
                         >
                           {(item.stores || []).map((s) => (
                             <option key={s.store} value={s.store}>
-                              {s.store} — ${Number(s.price).toFixed(2)}{' '}
+                              {s.store} — {formatINR(s.price)}{' '}
                               {s.price === item.lowest_price ? '🏆 (Lowest Price)' : ''}
                             </option>
                           ))}
@@ -227,7 +227,7 @@ export default function CartPage({
                       <div className="cart-delivery-tag">
                         <span>🚚</span>
                         <span>
-                          {item.delivery_agent || 'Express Logistics with Official Warranty'}
+                          {item.delivery_agent || 'Express Logistics with Official Brand Warranty'}
                         </span>
                       </div>
                     </div>
@@ -235,13 +235,13 @@ export default function CartPage({
                     {/* Price and Quantity Controls */}
                     <div className="cart-item-bottom">
                       <div className="cart-pricing-block">
-                        <span className="cart-unit-price">${item.unit_price.toFixed(2)}</span>
+                        <span className="cart-unit-price">{formatINR(item.unit_price)}</span>
                         {item.list_price > item.unit_price && (
-                          <span className="cart-list-price">${item.list_price.toFixed(2)}</span>
+                          <span className="cart-list-price">{formatINR(item.list_price)}</span>
                         )}
                         {itemSavings > 0 && (
                           <span className="cart-item-savings">
-                            Save ${itemSavings.toFixed(2)}
+                            Save {formatINR(itemSavings)}
                           </span>
                         )}
                       </div>
@@ -301,11 +301,11 @@ export default function CartPage({
           {/* Multi-Platform Total Cost Comparison Box */}
           <div className="multi-platform-summary-card">
             <div className="summary-title-row">
-              <h3>Platform Price Comparison</h3>
-              <span className="badge-live-check">● Live Comparison</span>
+              <h3>All E-Commerce Price Check</h3>
+              <span className="badge-live-check">● Live Prices</span>
             </div>
             <p className="summary-subtitle">
-              Total price for all {totalItems} items across competing e-commerce platforms:
+              Total price for all {totalItems} items across competing e-commerce sites:
             </p>
 
             <div className="platforms-cost-list">
@@ -334,14 +334,16 @@ export default function CartPage({
                           ? 'Amazon Prime Logistics'
                           : pt.platform === 'Meesho'
                           ? 'Meesho Direct Air Dispatch'
+                          : pt.platform === 'Croma'
+                          ? 'Croma Express Store Dispatch'
                           : 'Official Brand Direct'}
                       </span>
                     </div>
 
                     <div className="platform-price-col">
-                      <span className="platform-total-amount">${pt.total.toFixed(2)}</span>
+                      <span className="platform-total-amount">{formatINR(pt.total)}</span>
                       {deltaVsLowest > 0 ? (
-                        <span className="platform-extra-cost">+${deltaVsLowest.toFixed(2)}</span>
+                        <span className="platform-extra-cost">+{formatINR(deltaVsLowest)}</span>
                       ) : (
                         <span className="platform-best-save">Best Deal</span>
                       )}
@@ -355,22 +357,22 @@ export default function CartPage({
             <div className="cart-totals-breakdown">
               <div className="breakdown-row">
                 <span>Cart Subtotal:</span>
-                <span>${selectedCartTotal.toFixed(2)}</span>
+                <span>{formatINR(selectedCartTotal)}</span>
               </div>
               <div className="breakdown-row">
                 <span>Estimated Shipping:</span>
-                <span className="text-emerald">FREE (Verified Express)</span>
+                <span className="text-emerald">FREE Express Delivery</span>
               </div>
               {selectedSavings > 0 && (
                 <div className="breakdown-row highlight-save">
                   <span>Total Savings:</span>
-                  <span className="text-emerald">-${selectedSavings.toFixed(2)}</span>
+                  <span className="text-emerald">-{formatINR(selectedSavings)}</span>
                 </div>
               )}
               <div className="breakdown-row total-row">
                 <strong>Smallest Platform Total:</strong>
                 <strong className="total-highlight">
-                  ${lowestPlatform.total.toFixed(2)}
+                  {formatINR(lowestPlatform.total)}
                 </strong>
               </div>
             </div>
@@ -383,7 +385,7 @@ export default function CartPage({
                 rel="noopener noreferrer"
                 className="btn-checkout-lowest"
               >
-                Proceed to Buy on {lowestPlatform.platform} ⚡
+                Proceed to Buy on {lowestPlatform.platform} ({formatINR(lowestPlatform.total)}) ⚡
               </a>
               <p className="checkout-trust-notice">
                 🛡️ <strong>Official Site / Verified Seller Guarantee</strong>: You are redirected directly

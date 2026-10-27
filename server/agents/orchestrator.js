@@ -95,7 +95,7 @@ export class ShoppingOrchestrator {
       agent: 'scraper_agent',
       agent_name: 'Browser Automation Scraper (Playwright)',
       status: 'active',
-      message: '🌐 Launching headless Playwright Chromium to crawl Amazon, Best Buy, Walmart & B&H...',
+      message: '🌐 Crawling Flipkart, Amazon India, Meesho, Croma, Myntra & Official Brand Stores for smallest verified prices...',
       timestamp: getElapsed()
     });
     await new Promise(r => setTimeout(r, 450));
@@ -109,12 +109,12 @@ export class ShoppingOrchestrator {
 
     sendEvent('agent_thought', {
       agent: 'scraper_agent',
-      title: 'Multi-Store Scraping Complete',
+      title: 'Multi-Store Price Scraping Complete',
       data: {
         products_found: scrapedProducts.length,
-        stores_aggregated: ['Amazon', 'Best Buy', 'Walmart', 'B&H Photo', 'Direct'],
+        stores_aggregated: ['Flipkart', 'Amazon India', 'Meesho', 'Croma', 'Myntra', 'Official Brand Stores'],
         total_offers_extracted: totalOffers,
-        fastest_delivery: 'Free Same-Day Store Pickup'
+        fastest_delivery: 'Free 1-Day Express Air Delivery'
       },
       timestamp: getElapsed()
     });
@@ -124,7 +124,7 @@ export class ShoppingOrchestrator {
       agent: 'vector_agent',
       agent_name: 'Vector Database Spec Engine',
       status: 'active',
-      message: '📐 Embedding product hardware specifications into high-dimensional vector space...',
+      message: '📐 Embedding product specifications into high-dimensional vector space across fashion, home & electronics...',
       timestamp: getElapsed()
     });
     await new Promise(r => setTimeout(r, 350));
@@ -149,7 +149,7 @@ export class ShoppingOrchestrator {
       agent: 'price_agent',
       agent_name: 'Price Drop & History Tracker',
       status: 'active',
-      message: '📉 Checking 90-day price trends, all-time lows, and discount velocity...',
+      message: '📉 Checking 90-day price trends, all-time lows, and discount velocity across Indian marketplaces...',
       timestamp: getElapsed()
     });
     await new Promise(r => setTimeout(r, 350));
@@ -167,7 +167,7 @@ export class ShoppingOrchestrator {
       title: 'Price Drop Analysis Complete',
       data: {
         all_time_low_deals: atlCount,
-        average_savings: '$125.00',
+        average_savings: '₹2,500 - ₹25,000',
         active_alerts: (await this.priceAgent.getAlerts()).length
       },
       timestamp: getElapsed()

@@ -1,132 +1,225 @@
 {
+  "prod_anarkali_kurta_set": {
+    "product_name": "Libas Women's Sage Green Embroidered Anarkali Kurta Set",
+    "current_price": 1299,
+    "list_price": 2999,
+    "all_time_low": 1299,
+    "all_time_high": 2999,
+    "average_90d": 1899,
+    "price_drop_pct": 56.7,
+    "is_near_all_time_low": true,
+    "deal_rating": "Smallest Verified Price on Meesho (Save ₹1,700)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 2999, "store": "Libas Official Store"},
+      {"date": "2026-08-20", "price": 2499, "store": "Myntra"},
+      {"date": "2026-09-05", "price": 1899, "store": "Amazon"},
+      {"date": "2026-09-25", "price": 1499, "store": "Flipkart"},
+      {"date": "2026-10-25", "price": 1299, "store": "Meesho"}
+    ]
+  },
+  "prod_ceramic_vase_set": {
+    "product_name": "Nestasia Modern Ceramic Fluted & Donut Minimalist Vase (Set of 3)",
+    "current_price": 899,
+    "list_price": 1999,
+    "all_time_low": 899,
+    "all_time_high": 1999,
+    "average_90d": 1299,
+    "price_drop_pct": 55.0,
+    "is_near_all_time_low": true,
+    "deal_rating": "Smallest Verified Price on Meesho (Save ₹1,100)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 1999, "store": "Nestasia Official Store"},
+      {"date": "2026-08-20", "price": 1499, "store": "Amazon"},
+      {"date": "2026-09-10", "price": 1199, "store": "Flipkart"},
+      {"date": "2026-10-05", "price": 999, "store": "Flipkart"},
+      {"date": "2026-10-25", "price": 899, "store": "Meesho"}
+    ]
+  },
+  "prod_philips_air_fryer": {
+    "product_name": "Philips Digital Air Fryer 4.1L (1400W Rapid Air)",
+    "current_price": 6499,
+    "list_price": 9999,
+    "all_time_low": 6499,
+    "all_time_high": 9999,
+    "average_90d": 7999,
+    "price_drop_pct": 35.0,
+    "is_near_all_time_low": true,
+    "deal_rating": "Lowest Verified Price on Flipkart (Save ₹3,500)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 9999, "store": "Philips Official Store"},
+      {"date": "2026-08-15", "price": 8499, "store": "Croma"},
+      {"date": "2026-09-01", "price": 7499, "store": "Amazon"},
+      {"date": "2026-09-20", "price": 6899, "store": "Meesho"},
+      {"date": "2026-10-25", "price": 6499, "store": "Flipkart"}
+    ]
+  },
+  "prod_thinkpad_x1": {
+    "product_name": "Lenovo ThinkPad X1 Carbon Gen 12 (32GB, 1TB)",
+    "current_price": 149990,
+    "list_price": 174990,
+    "all_time_low": 149990,
+    "all_time_high": 174990,
+    "average_90d": 164990,
+    "price_drop_pct": 14.3,
+    "is_near_all_time_low": true,
+    "deal_rating": "Lowest Verified Price on Flipkart (Save ₹25,000)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 174990, "store": "Lenovo Official Store"},
+      {"date": "2026-08-20", "price": 169990, "store": "Amazon"},
+      {"date": "2026-09-10", "price": 159990, "store": "Croma"},
+      {"date": "2026-10-01", "price": 154990, "store": "Meesho"},
+      {"date": "2026-10-25", "price": 149990, "store": "Flipkart"}
+    ]
+  },
+  "prod_iphone_16_pro": {
+    "product_name": "Apple iPhone 16 Pro 256GB",
+    "current_price": 119900,
+    "list_price": 129900,
+    "all_time_low": 119900,
+    "all_time_high": 129900,
+    "average_90d": 126900,
+    "price_drop_pct": 7.7,
+    "is_near_all_time_low": true,
+    "deal_rating": "Lowest Price on Flipkart (Save ₹10,000)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 129900, "store": "Apple Official Store"},
+      {"date": "2026-08-20", "price": 129900, "store": "Croma"},
+      {"date": "2026-09-01", "price": 127900, "store": "Amazon"},
+      {"date": "2026-09-18", "price": 124900, "store": "Tata CLiQ"},
+      {"date": "2026-10-05", "price": 121999, "store": "Meesho"},
+      {"date": "2026-10-25", "price": 119900, "store": "Flipkart"}
+    ]
+  },
+  "prod_samsung_s25_ultra": {
+    "product_name": "Samsung Galaxy S25 Ultra 512GB",
+    "current_price": 124999,
+    "list_price": 134999,
+    "all_time_low": 124999,
+    "all_time_high": 134999,
+    "average_90d": 131900,
+    "price_drop_pct": 7.4,
+    "is_near_all_time_low": true,
+    "deal_rating": "Smallest Price at Meesho (Save ₹10,000)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 134999, "store": "Samsung Official Store"},
+      {"date": "2026-08-15", "price": 134999, "store": "Reliance Digital"},
+      {"date": "2026-09-01", "price": 131999, "store": "Croma"},
+      {"date": "2026-09-20", "price": 129999, "store": "Amazon"},
+      {"date": "2026-10-10", "price": 126999, "store": "Flipkart"},
+      {"date": "2026-10-25", "price": 124999, "store": "Meesho"}
+    ]
+  },
+  "prod_apple_watch_series10": {
+    "product_name": "Apple Watch Series 10 46mm GPS",
+    "current_price": 44900,
+    "list_price": 49900,
+    "all_time_low": 44900,
+    "all_time_high": 49900,
+    "average_90d": 48200,
+    "price_drop_pct": 10.0,
+    "is_near_all_time_low": true,
+    "deal_rating": "Lowest Price on Flipkart (Save ₹5,000)",
+    "timeline": [
+      {"date": "2026-08-01", "price": 49900, "store": "Apple Official Store"},
+      {"date": "2026-08-25", "price": 48900, "store": "Reliance Digital"},
+      {"date": "2026-09-10", "price": 47900, "store": "Croma"},
+      {"date": "2026-09-28", "price": 46900, "store": "Amazon"},
+      {"date": "2026-10-25", "price": 44900, "store": "Flipkart"}
+    ]
+  },
   "prod_macbook_air_m3": {
     "product_name": "Apple MacBook Air 13.6\" (M3 Chip)",
-    "current_price": 999.00,
-    "list_price": 1099.00,
-    "all_time_low": 949.00,
-    "all_time_high": 1099.00,
-    "average_90d": 1049.00,
-    "price_drop_pct": 4.7,
+    "current_price": 104990,
+    "list_price": 114900,
+    "all_time_low": 104990,
+    "all_time_high": 114900,
+    "average_90d": 110900,
+    "price_drop_pct": 8.6,
     "is_near_all_time_low": true,
-    "deal_rating": "Great Deal",
+    "deal_rating": "Lowest Price on Amazon (Save ₹9,910)",
     "timeline": [
-      {"date": "2026-08-01", "price": 1099.00, "store": "Amazon"},
-      {"date": "2026-08-15", "price": 1099.00, "store": "Amazon"},
-      {"date": "2026-09-01", "price": 1049.00, "store": "Amazon"},
-      {"date": "2026-09-15", "price": 1049.00, "store": "Amazon"},
-      {"date": "2026-10-01", "price": 1029.00, "store": "Amazon"},
-      {"date": "2026-10-15", "price": 1019.00, "store": "Amazon"},
-      {"date": "2026-10-24", "price": 999.00, "store": "Amazon"}
+      {"date": "2026-08-01", "price": 114900, "store": "Apple Official Store"},
+      {"date": "2026-08-15", "price": 112900, "store": "Croma"},
+      {"date": "2026-09-01", "price": 109900, "store": "Reliance Digital"},
+      {"date": "2026-09-15", "price": 107990, "store": "Tata CLiQ"},
+      {"date": "2026-10-01", "price": 106990, "store": "Flipkart"},
+      {"date": "2026-10-25", "price": 104990, "store": "Amazon"}
     ]
   },
   "prod_asus_zenbook_14": {
     "product_name": "ASUS Zenbook 14 OLED",
-    "current_price": 849.99,
-    "list_price": 1049.99,
-    "all_time_low": 849.99,
-    "all_time_high": 1049.99,
-    "average_90d": 969.00,
-    "price_drop_pct": 19.0,
+    "current_price": 94990,
+    "list_price": 109990,
+    "all_time_low": 94990,
+    "all_time_high": 109990,
+    "average_90d": 103900,
+    "price_drop_pct": 13.6,
     "is_near_all_time_low": true,
-    "deal_rating": "Historic All-Time Low",
+    "deal_rating": "Super Deal on Flipkart (Save ₹15,000)",
     "timeline": [
-      {"date": "2026-08-01", "price": 1049.99, "store": "Best Buy"},
-      {"date": "2026-08-20", "price": 999.99, "store": "Best Buy"},
-      {"date": "2026-09-05", "price": 949.99, "store": "Best Buy"},
-      {"date": "2026-09-22", "price": 999.99, "store": "Best Buy"},
-      {"date": "2026-10-10", "price": 899.99, "store": "Best Buy"},
-      {"date": "2026-10-22", "price": 849.99, "store": "Best Buy"}
+      {"date": "2026-08-01", "price": 109990, "store": "ASUS Official Store"},
+      {"date": "2026-08-20", "price": 106990, "store": "Reliance Digital"},
+      {"date": "2026-09-05", "price": 102990, "store": "Croma"},
+      {"date": "2026-09-22", "price": 98990, "store": "Amazon"},
+      {"date": "2026-10-10", "price": 96500, "store": "Meesho"},
+      {"date": "2026-10-25", "price": 94990, "store": "Flipkart"}
     ]
   },
-  "prod_thinkpad_t14s": {
-    "product_name": "Lenovo ThinkPad T14s Gen 5",
-    "current_price": 949.00,
-    "list_price": 1289.00,
-    "all_time_low": 929.00,
-    "all_time_high": 1289.00,
-    "average_90d": 1120.00,
-    "price_drop_pct": 26.3,
+  "prod_lenovo_thinkpad_x1": {
+    "product_name": "Lenovo ThinkPad X1 Carbon Gen 12",
+    "current_price": 174990,
+    "list_price": 199990,
+    "all_time_low": 174990,
+    "all_time_high": 199990,
+    "average_90d": 189900,
+    "price_drop_pct": 12.5,
     "is_near_all_time_low": true,
-    "deal_rating": "Deep 26% Discount",
+    "deal_rating": "Enterprise Deal on Amazon (Save ₹25,000)",
     "timeline": [
-      {"date": "2026-08-01", "price": 1289.00, "store": "Lenovo Direct"},
-      {"date": "2026-08-18", "price": 1199.00, "store": "Lenovo Direct"},
-      {"date": "2026-09-01", "price": 1149.00, "store": "Lenovo Direct"},
-      {"date": "2026-09-25", "price": 1099.00, "store": "Lenovo Direct"},
-      {"date": "2026-10-08", "price": 999.00, "store": "Lenovo Direct"},
-      {"date": "2026-10-25", "price": 949.00, "store": "Lenovo Direct"}
-    ]
-  },
-  "prod_acer_swift_go_14": {
-    "product_name": "Acer Swift Go 14",
-    "current_price": 679.99,
-    "list_price": 799.99,
-    "all_time_low": 649.99,
-    "all_time_high": 799.99,
-    "average_90d": 749.00,
-    "price_drop_pct": 15.0,
-    "is_near_all_time_low": false,
-    "deal_rating": "Great Value",
-    "timeline": [
-      {"date": "2026-08-01", "price": 799.99, "store": "Amazon"},
-      {"date": "2026-08-25", "price": 769.99, "store": "Amazon"},
-      {"date": "2026-09-12", "price": 749.99, "store": "Amazon"},
-      {"date": "2026-10-02", "price": 719.99, "store": "Amazon"},
-      {"date": "2026-10-20", "price": 679.99, "store": "Amazon"}
-    ]
-  },
-  "prod_dell_xps_13": {
-    "product_name": "Dell XPS 13 9340",
-    "current_price": 999.00,
-    "list_price": 1199.00,
-    "all_time_low": 999.00,
-    "all_time_high": 1199.00,
-    "average_90d": 1099.00,
-    "price_drop_pct": 16.6,
-    "is_near_all_time_low": true,
-    "deal_rating": "All-Time Low",
-    "timeline": [
-      {"date": "2026-08-01", "price": 1199.00, "store": "Dell Direct"},
-      {"date": "2026-08-20", "price": 1149.00, "store": "Dell Direct"},
-      {"date": "2026-09-10", "price": 1099.00, "store": "Dell Direct"},
-      {"date": "2026-10-05", "price": 1049.00, "store": "Dell Direct"},
-      {"date": "2026-10-23", "price": 999.00, "store": "Dell Direct"}
+      {"date": "2026-08-01", "price": 199990, "store": "Lenovo Official Store"},
+      {"date": "2026-08-18", "price": 194990, "store": "Croma"},
+      {"date": "2026-09-01", "price": 189990, "store": "Reliance Digital"},
+      {"date": "2026-09-25", "price": 184990, "store": "Tata CLiQ"},
+      {"date": "2026-10-08", "price": 178990, "store": "Flipkart"},
+      {"date": "2026-10-25", "price": 174990, "store": "Amazon"}
     ]
   },
   "prod_sony_wh1000xm5": {
-    "product_name": "Sony WH-1000XM5 ANC Headphones",
-    "current_price": 279.99,
-    "list_price": 399.99,
-    "all_time_low": 279.99,
-    "all_time_high": 399.99,
-    "average_90d": 349.99,
-    "price_drop_pct": 30.0,
+    "product_name": "Sony WH-1000XM5 Wireless Headphones",
+    "current_price": 24990,
+    "list_price": 29990,
+    "all_time_low": 24990,
+    "all_time_high": 29990,
+    "average_90d": 27900,
+    "price_drop_pct": 16.7,
     "is_near_all_time_low": true,
-    "deal_rating": "Record Low 30% Off",
+    "deal_rating": "Lowest Price on Meesho (Save ₹5,000)",
     "timeline": [
-      {"date": "2026-08-01", "price": 399.99, "store": "Amazon"},
-      {"date": "2026-08-20", "price": 379.99, "store": "Amazon"},
-      {"date": "2026-09-10", "price": 349.99, "store": "Amazon"},
-      {"date": "2026-10-01", "price": 329.99, "store": "Amazon"},
-      {"date": "2026-10-21", "price": 279.99, "store": "Amazon"}
+      {"date": "2026-08-01", "price": 29990, "store": "Sony Official Store"},
+      {"date": "2026-08-15", "price": 28990, "store": "Reliance Digital"},
+      {"date": "2026-09-01", "price": 27990, "store": "Croma"},
+      {"date": "2026-09-20", "price": 26990, "store": "Amazon"},
+      {"date": "2026-10-10", "price": 25990, "store": "Flipkart"},
+      {"date": "2026-10-25", "price": 24990, "store": "Meesho"}
     ]
   },
-  "prod_dell_u2723qe_4k": {
-    "product_name": "Dell UltraSharp 27 4K U2723QE",
-    "current_price": 479.99,
-    "list_price": 599.99,
-    "all_time_low": 469.99,
-    "all_time_high": 599.99,
-    "average_90d": 529.00,
-    "price_drop_pct": 20.0,
+  "prod_dell_u2723qe": {
+    "product_name": "Dell UltraSharp 27 4K USB-C Hub Monitor",
+    "current_price": 48990,
+    "list_price": 58990,
+    "all_time_low": 48990,
+    "all_time_high": 58990,
+    "average_90d": 54900,
+    "price_drop_pct": 17.0,
     "is_near_all_time_low": true,
-    "deal_rating": "Super Deal 20% Off",
+    "deal_rating": "Lowest Price on Flipkart (Save ₹10,000)",
     "timeline": [
-      {"date": "2026-08-01", "price": 599.99, "store": "Amazon"},
-      {"date": "2026-08-25", "price": 569.99, "store": "Amazon"},
-      {"date": "2026-09-15", "price": 539.99, "store": "Amazon"},
-      {"date": "2026-10-05", "price": 499.99, "store": "Amazon"},
-      {"date": "2026-10-24", "price": 479.99, "store": "Amazon"}
+      {"date": "2026-08-01", "price": 58990, "store": "Dell Official Store"},
+      {"date": "2026-08-20", "price": 55990, "store": "Reliance Digital"},
+      {"date": "2026-09-05", "price": 53990, "store": "Croma"},
+      {"date": "2026-09-25", "price": 51990, "store": "Amazon"},
+      {"date": "2026-10-10", "price": 49900, "store": "Meesho"},
+      {"date": "2026-10-25", "price": 48990, "store": "Flipkart"}
     ]
   }
 }
